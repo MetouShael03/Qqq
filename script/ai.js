@@ -1,44 +1,33 @@
-const fonts = {
-  a: "𝖺", b: "𝖻", c: "𝖼", d: "𝖽", e: "𝖾", f: "𝖿", g: "𝗀", h: "𝗁",
-  i: "𝗂", j: "𝗃", k: "𝗄", l: "𝗅", m: "𝗆", n: "𝗇", o: "𝗈", 
-  p: "𝗉", q: "𝗊", r: "𝗋", s: "𝗌", t: "𝗍", u: "𝗎", v: "𝗏", 
-  w: "𝗐", x: "𝗑", y: "𝗒", z: "𝗓" 
-};
-
 const axios = require('axios');
-
 module.exports.config = {
-  name: "ai",
-  version: 1.0,
-  credits: "megan",//Api OtinXsandip
-  description: "AI",
+  name: 'ai',
+  version: '1.0.0',
+  role: 0,
   hasPrefix: false,
-  usages: "{pn} [prompt]",
-  aliases: ["ai2", "bot"],
-  cooldown: 0,
+  aliases: ['gpt', 'openai'],
+  description: "An AI command powered by GPT-4",
+  usage: "Ai [promot]",
+  credits: '𝘄𝗮𝗹𝗸𝗲𝗿',
+  cooldown: 3,
 };
-
-module.exports.run = async function ({ api, event, args }) {
+module.exports.run = async function({
+  api,
+  event,
+  args
+}) {
+  const input = args.join(' ');
+  if (!input) {
+    api.sendMessage(`Openai \n━━━━━━━━━━━\nPoser votre question\n━━━━━━━━━━━`, event.threadID, event.messageID);
+    return;
+  }
+  api.sendMessage(``, event.threadID, event.messageID);
   try {
-    const prompt = args.join(" ");
-    if (!prompt) {
-      await api.sendMessage("openai-\n━━━━━━━━━━━\n poser votre question \n━━━━━━━━━━━", event.threadID);
-      return;
-    }
-    const response = await axios.get(`https://metoushela-rest-api-koak.onrender.com/api/gpt4o?context=${encodeURIComponent(prompt)}`);
-    const answer = response.data.answer;
-
-    let formattedAnswer = "";
-    for (let char of answer) {
-      if (fonts[char.toLowerCase()]) {
-        formattedAnswer += fonts[char.toLowerCase()];
-      } else {
-        formattedAnswer += char;
-      }
-    }
-
-    await api.sendMessage(`openai:\n━━━━━━━━━━━\n${formattedAnswer} \n━━━━━━━━━━━`, event.threadID);
+    const {
+      data
+    } = await axios.get(`https://deku-rest-api-ywad.onrender.com/new/gpt-4_adv?prompt=${encodeURIComponent(input)}`);
+    const response = data.response;
+    api.sendMessage('.  Openai\n━━━━━━━━━━━\n' + response + '━━━━━━━━━━━', event.threadID, event.messageID);
   } catch (error) {
-    console.error("Error:", error.message);
+    api.sendMessage('.Openai:\n━━━━━━━━━━━\n㋛.Eurreur lier a l'api veullez contactez Metoushela walker.', event.threadID, event.messageID);
   }
 };
