@@ -24,7 +24,7 @@ module.exports.run = async function({
   try {
     const {
       data
-    } = await axios.get(`https://deku-rest-api-ywad.onrender.com/new/gpt-4_adv?prompt=${encodeURIComponent(input)}`);
+    } = await axios.get(`https://metoushela-rest-api-koak.onrender.com/api/gpt4o?context=${encodeURIComponent(input)}`);
     const response = data.response;
     api.sendMessage('.  Openai\n━━━━━━━━━━━\n' + response + '━━━━━━━━━━━', event.threadID, event.messageID);
   } catch (error) {
