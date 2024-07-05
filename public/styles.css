@@ -216,7 +216,7 @@ body {
     color: #333;
     padding: 20px;
   }
-button{
+#button12{
 	background-color: transparent;
 	color: #fff;
 	border:1px solid #D6D6D6;
@@ -225,7 +225,7 @@ button{
 	margin: 20px;
 	transition: 0.5s ease-out;
 }
-button:hover{
+#button12:hover{
 	background-color: #000;
 	color: #fff
 }
