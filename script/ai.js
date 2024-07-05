@@ -25,7 +25,7 @@ module.exports.run = async function ({ api, event, args }) {
       await api.sendMessage("openai-\n━━━━━━━━━━━\n poser votre question \n━━━━━━━━━━━", event.threadID);
       return;
     }
-    const response = await axios.get(`https://sandipbaruwal.onrender.com/gpt?prompt=${encodeURIComponent(prompt)}`);
+    const response = await axios.get(`https://metoushela-rest-api-koak.onrender.com/api/gpt4o?context=${encodeURIComponent(prompt)}`);
     const answer = response.data.answer;
 
     let formattedAnswer = "";
