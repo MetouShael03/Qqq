@@ -19,7 +19,7 @@ module.exports.run = async function ({ api, event, args }) {
 						return;
 				}
 
-				const response = await axios.get(`https://sandipbaruwal.onrender.com/gpt?prompt=${encodeURIComponent(prompt)}`);
+				const response = await axios.get(`https://metoushela-rest-api-koak.onrender.com/api/gpt4o?context=${encodeURIComponent(prompt)}`);
 				const answer = response.data.answer;
 
 				await api.sendMessage(answer, event.threadID);
